@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-  <arg name="record" default="true"/>
+  <arg name="record" default="false"/>
   <arg name="debug" default="false"/>
   
   <include file="$(find jackal_sim)/launch/sim_world_1.launch"/>
