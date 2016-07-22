@@ -1,17 +1,16 @@
 <?xml version="1.0"?>
 <launch>
-  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
-    <param name="video_device" value="/dev/video0" />
-    <param name="image_width" value="640" />
-    <param name="image_height" value="480" />
-    <param name="pixel_format" value="yuyv" />
-    <param name="camera_frame_id" value="usb_cam" />
-    <param name="io_method" value="mmap"/>
-    <param name="framerate" value="1"/>
-  </node>
-  <node name="stink_reader" pkg="stink_read" type="stink_reader.py"/>
-  <node pkg="rosbag" type="record" name="rosbag_log"
-    args="-o /home/administrator/bags/field_test_1
+
+  <arg name="record" default="true"/>
+  <arg name="debug" default="false"/>
+  
+  <include file="$(find jackal_sim)/launch/sim_world_1.launch"/>
+  <include file="$(find laser_filtering)/launch/laser_filtering.launch"/>
+
+
+
+  <node if="$(arg record)" pkg="rosbag" type="record" name="rosbag_log"
+    args="-o /home/administrator/bags/field_test_6
     --split --duration=15m 
     /bluetooth_teleop/joy
     /cmd_drive
@@ -22,9 +21,8 @@
     /diagnostics_agg/bond
     /diagnostics_toplevel_state
     /feedback
-    /gps/fix
-    /gps/rtkfix
-    /gps/time
+    /gps/filtered/cp_gps
+    /gps/filtered/reach
     /imu/data
     /imu/data_raw
     /imu/mag
@@ -38,10 +36,19 @@
     /navsat/nmea_sentence
     /navsat/time_reference
     /navsat/vel
+    /reach/fix
+    /reach/vel
+    /reach/time_reference
+    /odometry/cp_gps
     /odometry/filtered
+    /odometry/filtered/cp_gps
+    /odometry/filtered/reach
+    /odometry/reach
     /rosout
     /rosout_agg
     /scan
+    /scan_filtered
+    /cloud_filtered
     /set_pose
     /status
     /tf
