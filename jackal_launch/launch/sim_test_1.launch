@@ -7,8 +7,6 @@
   <include file="$(find jackal_sim)/launch/sim_world_1.launch"/>
   <include file="$(find laser_filtering)/launch/laser_filtering.launch"/>
 
-
-
   <node if="$(arg record)" pkg="rosbag" type="record" name="rosbag_log"
     args="-o /home/administrator/bags/field_test_6
     --split --duration=15m 
