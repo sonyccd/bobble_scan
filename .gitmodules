@@ -1,0 +1,3 @@
+[submodule "jackal_simulation"]
+	path = jackal_simulation
+	url = https://github.com/sonyccd/jackal_simulation.git
