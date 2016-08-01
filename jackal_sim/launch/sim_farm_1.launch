@@ -3,6 +3,7 @@
   <arg name="use_sim_time" default="true" />
   <arg name="gui" default="true" />
   <arg name="headless" default="false" />
+  <arg name="paused" default="true"/>
   <arg name="world_name" default="$(find jackal_sim)/worlds/farm1.world" />
 
   <!-- Short-term hack to support the original front_laser:=true argument for spawning
@@ -23,6 +24,7 @@
     <arg name="use_sim_time" value="$(arg use_sim_time)" />
     <arg name="headless" value="$(arg headless)" />
     <arg name="world_name" value="$(arg world_name)" />
+    <arg name="paused" value="$(arg paused)"/>
   </include>
 
   <!-- Load Jackal's description, controllers, and teleop nodes. -->
